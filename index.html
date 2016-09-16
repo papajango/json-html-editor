@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Json Editor</title>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+
+<body>
+	<div id="app" class="container">
+		<div class="row">
+			<div class="col-xs-12">
+				<h1>Json Editor</h1>
+				<div class="form-group">
+					<label for="comment">Input data(json): <span class="example"></span></label>
+					<textarea class="form-control" rows="5" id="input-data"></textarea>
+				</div>
+				<a href="#" class="btn btn-primary load-data">Load</a>
+				<a href="#" class="btn btn-success clear-data">Clear</a>
+				<table class="table table-hover" id="generated-table">
+				</table>
+				<a href="#" class="btn btn-primary disabled" id="generate-json">Generate json</a>
+			</div>
+		</div>
+	</div>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+	<script src="dist/script-min.js"></script>
+</body>
+
+</html>
