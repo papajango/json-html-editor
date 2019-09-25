@@ -5,23 +5,27 @@
 
 	var example = [
 		{
-			'name': 'John',
-			'age': 50
+			name: 'John',
+			age: 50
 		},
 		{
-			'age': '15',
-			'hobby': 'swimming'
+			age: '15',
+			hobby: 'swimming'
 		},
 		{
-			'name': 'Anna',
-			'hobby': 'programming'
+			name: 'Anna',
+			hobby: 'programming'
 		}
 	];
 
 	$('.example').html(JSON.stringify(example));
 
-	var $deleteRowLink = $('<a class="btn btn-danger delete-row-link" href="#" title="Delete row">-</a>');
-	var $appendRowLink = $('<a class="btn btn-success append-row-link" href="#" title="Append row">+</a>');
+	var $deleteRowLink = $(
+		'<a class="btn btn-danger delete-row-link" href="#" title="Delete row">-</a>'
+	);
+	var $appendRowLink = $(
+		'<a class="btn btn-success append-row-link" href="#" title="Append row">+</a>'
+	);
 	var $selector = $('#generated-table');
 	var $loadDataLink = $('.load-data');
 	var $clearDataLink = $('.clear-data');
@@ -30,7 +34,9 @@
 	var inputJson = [];
 
 	function addHeadings(arr) {
-		$selector.append($('<thead />').append($('<tr />').append($('<th />').html('#'))));
+		$selector.append(
+			$('<thead />').append($('<tr />').append($('<th />').html('#')))
+		);
 		var $tr = $selector.find('thead tr');
 		for (var i = 0; i < arr.length; i++) {
 			$tr.append('<th>' + arr[i] + '</th>');
@@ -50,12 +56,22 @@
 					ceilValue = '';
 				}
 				var $td = $('<td />');
-				var $input = $('<input class="form-control" data-row-number="'+i+'" name="' + uniqueKeys[k] + '" value="'+ceilValue+'" />');
-				
+				var $input = $(
+					'<input class="form-control" data-row-number="' +
+						i +
+						'" name="' +
+						uniqueKeys[k] +
+						'" value="' +
+						ceilValue +
+						'" />'
+				);
+
 				$tr.append($td.append($input));
 			}
 			var $actionTd = $('<td />');
-			$actionTd.append($deleteRowLink.clone(true)).append($appendRowLink.clone(true));
+			$actionTd
+				.append($deleteRowLink.clone(true))
+				.append($appendRowLink.clone(true));
 			$tr.append($actionTd);
 			$selector.find('tbody').append($tr);
 		}
@@ -68,9 +84,17 @@
 			alert('Empty textarea!');
 			return false;
 		}
-		if (!(/^[\],:{}\s]*$/.test(str.replace(/\\["\\\/bfnrtu]/g, '@').
-			replace(/"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g, ']').
-			replace(/(?:^|:|,)(?:\s*\[)+/g, '')))) {
+		if (
+			!/^[\],:{}\s]*$/.test(
+				str
+					.replace(/\\["\\\/bfnrtu]/g, '@')
+					.replace(
+						/"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g,
+						']'
+					)
+					.replace(/(?:^|:|,)(?:\s*\[)+/g, '')
+			)
+		) {
 			alert('Json is not valid!');
 			return false;
 		}
@@ -90,7 +114,7 @@
 	function generateJson() {
 		var arr = [],
 			propName = '',
-			propValue = '';		
+			propValue = '';
 		$.each($selector.find('tbody tr'), function() {
 			var tdObj = {};
 			$.each($(this).find('td'), function() {
@@ -108,13 +132,18 @@
 	}
 
 	function deleteRow() {
-		$(this).parent('td').parent('tr').remove();
+		$(this)
+			.parent('td')
+			.parent('tr')
+			.remove();
 		updateIndexes();
 		return false;
 	}
 
 	function appendRow() {
-		var $tr = $(this).parent('td').parent('tr');
+		var $tr = $(this)
+			.parent('td')
+			.parent('tr');
 		var $cloneTr = $tr.clone();
 		$cloneTr.find('input').val('');
 		$tr.after($cloneTr);
@@ -124,7 +153,10 @@
 
 	function updateIndexes() {
 		$.each($selector.find('tbody tr'), function(index) {
-			$(this).find('td').first().html(index);
+			$(this)
+				.find('td')
+				.first()
+				.html(index);
 		});
 	}
 

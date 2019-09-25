@@ -6,5 +6,7 @@ var gulp = require('gulp'),
 gulp.task('minify-js', function() {
 	gulp.src('script.js')
 		.pipe(minify())
-		.pipe(gulp.dest('dist'))
+		.pipe(gulp.dest('dist'));
 });
+
+gulp.task('default', gulp.parallel('minify-js'));
